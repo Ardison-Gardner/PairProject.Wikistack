@@ -1,7 +1,9 @@
 const express = require('express');
-// const sequelize = require('sequelize');
 const morgan = require('morgan');
-const { db } = require('./models');
+const models = require('./models');
+const wikiRouter = require('./routes/wiki');
+const userRouter = require('./routes/user');
+const { addPage } = require('./views');
 
 const app = express();
 
@@ -15,11 +17,25 @@ app.get('/', (req, res) => {
   res.send('Hello all you people!');
 });
 
-app.listen(PORT, () => {
-  console.log(`App is listening on port ${PORT}`);
+app.get('/add', (req, res) => {
+  res.send(addPage());
 });
 
-db.authenticate().
-then(() => {
-  console.log('connected to the database');
-});
+const init = async () => {
+  try{
+    await models.Page.sync({force: true});
+    await models.User.sync({force: true});
+    // await models.db.sync({force: true});
+    app.listen(PORT, () => {
+      console.log(`App is listening on port ${PORT}`);
+    });
+    // db.authenticate().
+    // then(() => {
+    //   console.log('connected to the database');
+    // });
+  } catch(error) {
+    console.log(error);
+  }
+}
+
+init();
