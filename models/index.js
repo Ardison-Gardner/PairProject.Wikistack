@@ -41,7 +41,7 @@ const User = db.define('user', {
   }
 });
 
-//Export
+//Exports
 module.exports = {
   Page,
   User

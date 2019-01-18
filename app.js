@@ -4,7 +4,6 @@ const morgan = require('morgan');
 const models = require('./models');
 const wikiRouter = require('./routes/wiki');
 // const userRouter = require('./routes/user');
-const { addPage } = require('./views');
 
 const app = express();
 
@@ -15,16 +14,11 @@ app.use(express.static(__dirname + '/public'));
 app.use('/wiki', wikiRouter);
 
 //Port settings
-const PORT = 1337;
+const PORT = 3000;
 
 //Routes
-
 app.get('/', (req, res) => {
   res.send('Hello all you people!');
-});
-
-app.get('/add', (req, res) => {
-  res.send(addPage());
 });
 
 //Initiating database

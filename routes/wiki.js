@@ -1,7 +1,9 @@
+//Modules
 const express = require('express');
 const router = express.Router();
+const { addPage } = require('../views');
 
-
+//Routes
 router.get('/', (req, res, next) => {
   res.send('got to GET /wiki/');
 });
@@ -11,7 +13,8 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/add', (req, res, next) => {
-  res.send('got to GET /wiki/add');
+  res.send(addPage());
 });
 
+//Exports
 module.exports = router;
