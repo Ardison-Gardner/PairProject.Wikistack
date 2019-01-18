@@ -5,7 +5,7 @@ const { addPage } = require('../views');
 
 //Routes
 router.get('/', (req, res, next) => {
-  res.send('got to GET /wiki/');
+  res.redirect('/wiki');
 });
 
 router.post('/', (req, res, next) => {
